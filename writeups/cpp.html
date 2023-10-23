@@ -1,0 +1,151 @@
+<!doctype html>
+<html><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <!-- InstanceBeginEditable name="title" --><title>Uncage Your Code with C++</title><!-- InstanceEndEditable -->
+    <link href="../style.css" rel="stylesheet" type="text/css">
+    <!-- InstanceBeginEditable name="head" -->
+    <!-- InstanceEndEditable -->
+</head>
+<body class="floating">
+
+<header>
+    <div style="display: inline-block; vertical-align:middle; margin-left:1ch; text-align: center">
+        <a href="/">SHEIN HTIKE'S WEBSITE
+        </a><br>
+			───────────────────────
+        <nav style="white-space: pre-wrap; text-align: left"><a class="title" href="/contents.html">CONTENTS</a>  <a class="title" href="https://github.com/SheinH">GITHUB</a>  <a
+                class="title" href="mailto:chocolateshein.htike@gmail.com">EMAIL</a></nav>
+    </div>
+    <br/>
+    <hr/>
+</header>
+<article>
+    <h1><!-- InstanceBeginEditable name="title2" -->Uncage Your Code with C++<!-- InstanceEndEditable --></h1>
+    <!-- InstanceBeginEditable name="date" -->3/18/19<!-- InstanceEndEditable -->
+    <hr/>
+    <!-- InstanceBeginEditable name="body" -->
+	<img class=mainimg src="/images/cpp.jpg">
+	<br/>
+	<p>Are you tired of having your hand held by a garbage collector? Are you ready to have your code uncaged from the confines of its virtual machine? Are you ready to have your code run blazing fast, right on the metal? Do you want bragging points for knowing a language with a feature list longer than a CVS recipt? Then C++ is the language for you!
+	</p>
+	<h3> Who is this guide for?
+	</h3>
+	<p>
+		This guide is for anybody who wants to learn C++ and has experience from a language with automatic memory management. Such languages include:
+		<br>
+		<ul>
+			<li>Java</li>
+			<li>C#</li>
+			<li>Python</li>
+			<li>JS</li>
+			<li>Kotlin</li>
+			<li>Ruby</li>
+		</ul>
+	</p>
+	<h3>What does this guide cover?</h3>
+	<p>This guide covers strategies for memory management as well as some C++ features that may not be present in other languages.
+		The goal of this guide is to help newcomers write idiomatic C++ code and make good decisions with memory management.
+	</p>
+	<h3>What doesn't it cover?</h3>
+	<p>The rest of the damn language. Go read a book by Stroustroup for that. He's got like four of em.</p>
+	<h2>Useful tips</h2>
+	<h3>1. Use const, use it everywhere.</h3>
+	<p>
+		The keyword <code>const</code> is a lovely feature of C++ and you should use it as liberally as possible. 
+		Firstly, if an object is declared as <code>const</code> then you get a compiler-backed guarentee that this
+		object will <em>never</em> change. That means that your code will have one less moving part that can go wrong. 
+		On top of that, the compiler can make optimizations around <code>const</code> 
+		objects that it wouldn't otherwise be able to make. Using <code>const</code> means speedier and less error-prone code.
+		
+	</p>
+	<p>
+		Const references are also worth mnentioning. Even if you have a non-const object, you can pass it to a function as
+		a const reference and get the above guarentees and benefits. Your object becomes <code>const</code> for the duration 
+		of the function and cannot be modified.
+	</p>
+	<p>
+		Finally non-static methods on objects can also be labeled const. You can run these methods and be sure that your object
+		will stay unaffected.
+	</p>
+	<p>
+		Now isn't all of that lovely? In fact, using const is so beneficial that the official CPP Core Guidelines recommends that you use const by default! So remember, <strong>Use const, use it everywhere</strong>!
+	</p>
+	<h3>2. Auto is your friend</h3>
+	<p>
+		C++ is not exactly known for brevity. Between having to write "std::" for every single standard library function and typing out things like</p><p>
+		<div class=centerdiv><code>std::vector&lt;std::basic_string&lt;char&gt;,std::allocator&lt;std::basic_string&lt;char&gt;&gt;&gt;::size_type</code></div></p><p> your fingers
+		might get sore before you've even written anything useful.
+		
+		Thankfully <code>auto</code> is here to save the day. Automatic type deduction means that your compiler will automatically figure out
+		the type of your declaration based on its assignment. Use <code>auto</code> for grabbing elements from vectors.
+Use <code>auto</code> for getting results from functions. Use <code>auto</code> for foreach loops. In general, you can use <code>auto</code> anytime
+The typing of a field is obvious or unimportant.
+	</p>
+	<h3>3. Combine the two!</h2>
+	<p>
+	You will end up writing <code>const auto</code> and <code>const auto&amp</code> for a lot of fields for the above reasons. 
+To make life easier, I took a page out of rust and swift's book and created an IDE shortcut, 
+		"let". </p><div class=centerdiv>
+	<video autoplay loop muted playsinline src="/images/letmacro.mp4" class=centerimg></video>
+	</div>
+		<p>
+		Whenever I type "let" and hit spacebar, CLion automatically changes "let" to 
+"const auto". This made the verbosity of C++ <em>far</em> easier to deal with.
+	</p>
+	<h3>4. C++ lets you optimize like a madman. Don't do it.</h3>
+	<p>
+		C++ is already a blazing fast language compared to other VM languages. However, the amount of flexibility C++ offers
+		means that there are countless ways to """improve""" your code by doing things like avoiding copying and doing things in less 
+		steps.
+	</p>
+	<p> <strong>Don't do it!</strong> Computers are fast and C++ is even faster. Computer time is cheap but
+	  Your time is priceless. Don't spend half an hour writing optimized unreadable code that cuts down
+	  Performance by 5 milliseconds in an edge case. That time is better spent working on other features! </p>
+	<p>
+		Chances are, you won't notice any slowdowns even when you don't optimize everything.
+		Even if you do, you can easily go back and optimize once you've completed other tasks. Save that for later!
+	</p>
+	<h2>Memory Management</h2>
+	<h3>5. RAII: Resource acquisition is initialization</h3>
+	<div class=centerdiv><img class=centerimg src=/images/japancleanup.jpg><figcaption style="font-size: 0.8em">Japanese cleaning up after themselves at the Olympics.</figcaption></div>
+	<p>
+		In C++, objects acquire resources such as heap allocated objects in their constructor. In their destructor, objects release these resources. This is how we manage the chaos of pointers and resources and avoid memory leaks. This is C++'s replacement for garbage collection. Like the Japanese, objects in C++ clean up after themselves!
+	</p>
+	<h3>6. ..which means you should avoid the new keyword outside of constructors</h3>
+	<div class=centerdiv><img class=centerimg src=/images/waterbottle.png></div>
+	<p>
+		Creating an object with new is a liability. Like Kanye's water bottle you are now responsible for your object. You must remember to delete it at the appropriate time. You must remember not to use it after deletion. You must remember not to delete it twice. What a hassle!
+	</p>
+	<p>
+The only times you should ever consider using the dreaded <code>new</code> keyword is in the constructor of an object. The constructor can allocate an object with <code>new</code> and a matching destructor can free that object's memory with <code>delete</code>. This keeps your resources management tidy and worry-free!
+	</p>
+	<p>
+
+Another acceptable use of <code>new</code> would be when working with libraries that require it. Most of the time, these libraries will manage deletion for you once you pass it off into their care.
+		
+	</p>
+	<p>
+
+However, if you feel tempted to use new outside of these cases...
+	</p>
+	<h3>7. Use a smart pointer!</h3>
+	<div class=centerdiv><img class=centerimg src=/images/selfdestruct.jpg></div>
+	<p>
+	Smart pointers are great because they manage memory for you! <code>std::unique_ptr</code> is what you want most of the time. It holds onto your pointer for you when you declare it. You can use it like a normal pointer while it's alive. When it goes out of scope, it automatically <code>delete</code>s whatever it points to and frees the memory for you. In order to prevent double deletion, it cannot be copied. It can, however, be moved or returned from a function or passed to different scopes so long as you don't copy it.
+	</p>
+	<p>
+
+<code>std::shared_ptr</code> is another type of smart pointer. It's is used when you DO want the ability to copy your smart pointer. When you create and copy a shared_ptr it knows exactly how many brethren it has. When all the shared_ptrs that point to a single object are deleted, the object self destructs. It is mainly used for multithreading and functional-style programming. Chances are, if you're reading this guide, you won't need to use it any time soon. But it exists and now you know!
+	</p>
+	<h3>8. A handy guide on how to pass data</h3>
+	<div class=centerdiv><img src=/images/passdata.png></div>
+	<p>This chart speaks for itself. Admittedly, I got this chart off some guy on discord and I'm not entirely sure if he made it either.
+		In any case, now the chart is yours. Consult it whenever you want to figure out how to pass data in and out of a function.
+	</p>
+	<h2>Conclusion</h2>
+	<p>The mount of choice that C++ offers is overwhelming. These tips and rules of thumb help mitigate that feeling of <a href="https://en.wikipedia.org/wiki/Analysis_paralysis">analysis paralysis</a> so you can focus on actually programming instead of fighting the language.. I hope this guide can be a good starting point for your C++ journey.</p>
+	<!-- InstanceEndEditable -->
+</article>
+</body>
+<!-- InstanceEnd --></html>

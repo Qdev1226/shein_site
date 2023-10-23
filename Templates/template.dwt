@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <!-- TemplateBeginEditable name="title" -->title<!-- TemplateEndEditable -->
+    <link href="../style.css" rel="stylesheet" type="text/css">
+    <!-- TemplateBeginEditable name="head" -->
+    <!-- TemplateEndEditable -->
+</head>
+<body class="floating">
+
+<header>
+    <div style="display: inline-block; vertical-align:middle; margin-left:1ch; text-align: center">
+        <a href="/">SHEIN HTIKE'S WEBSITE
+        </a><br>
+			───────────────────────
+        <nav style="white-space: pre-wrap; text-align: left"><a class="title" href="/contents.html">CONTENTS</a>  <a class="title" href="https://github.com/SheinH">GITHUB</a>  <a
+                class="title" href="mailto:chocolateshein.htike@gmail.com">EMAIL</a></nav>
+    </div>
+    <br/>
+    <hr/>
+</header>
+<article>
+    <h1><!-- TemplateBeginEditable name="title2" -->title<!-- TemplateEndEditable --></h1>
+    <!-- TemplateBeginEditable name="date" -->date<!-- TemplateEndEditable -->
+    <hr/>
+    <!-- TemplateBeginEditable name="body" -->body<!-- TemplateEndEditable -->
+</article>
+</body>
+</html>

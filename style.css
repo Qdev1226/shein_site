@@ -1,0 +1,111 @@
+@charset "UTF-8";
+/* CSS Document */
+html{
+	-webkit-font-smoothing: subpixel-antialiased;
+	--myYellow:#7F7F00;
+	font-family: "Menlo", "Consolas", "Lucida Console", "DejaVu Sans Mono", Monaco, "Courier New", Courier, monospace;
+	background: url("/images/background.jpg") no-repeat center center fixed;
+	padding: 0px 10px;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+}
+code {
+	font-family: monospace;
+	font-size: 1.1em;
+	background-color: rgba(27, 31, 35, 0.1);
+}
+input {
+  border-style: solid;
+  border-width: 1px;
+}
+body {
+	box-sizing: border-box;
+	margin:10px auto;
+	max-width: 950px;
+	font-size: 1.1em;
+	padding:20px 10px;
+	min-height: calc(100% - 20px);
+}
+.floating{
+	background-color: rgba(255, 255, 255, 0.5);
+	-webkit-box-shadow: 0 0 5px 2px rgba(0,0,0,0.08);
+	-moz-box-shadow: 0 0 5px 2px rgba(0,0,0,0.08);
+	box-shadow: 0 0 5px 2px rgba(0,0,0,0.08);
+}
+header{
+	text-align: center;
+	font-weight: bold;
+}
+.mainimg{
+	object-fit: cover;
+	width: 100%;
+	height: 8em;
+	max-height: 200px;
+}
+figure img{
+	width: 100%;
+	object-fit: cover;
+	max-height: 500px;
+}
+#entrybutton {
+	font-size: 3em;
+	border: 0.1em dashed black;
+	display: inline-block;
+	padding: 10px;
+	margin: auto;
+	text-decoration: none;
+	color: black;
+	background: rgba(255,255,255,0.70);
+}
+#entrybutton:hover{
+	font-style: italic;
+	color:var(--myYellow);
+	border: 0.1em dashed var(--myYellow);
+}
+.poem{
+	text-align: center;
+	font-size: 0.9em;
+}
+figure{
+	text-align: center;
+	max-width: 500px;
+	padding:0 10px;
+	margin: auto;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+.citation{
+	width:100%;
+	text-align: right;
+}
+a:hover{
+	color: var(--myYellow);
+}
+.pagelinks{
+}
+.pagelinks:hover{
+	border-bottom: 0.0833em dashed var(--myYellow);
+}
+.centerdiv{
+	text-align: center;
+}
+.centerdiv img{
+	max-width: 100%;
+}
+.centerdiv .centerimg{
+	max-width: 500px;
+}
+#maindiv{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	text-align: center;
+}
